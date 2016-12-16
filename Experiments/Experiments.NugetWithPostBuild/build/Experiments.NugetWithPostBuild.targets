@@ -1,0 +1,12 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+      <ScriptLocation Condition=" '$(ScriptLocation)'=='' ">..\packages\Experiments.NugetWithPostBuild.1.0.0\scripts\Script.ps1</ScriptLocation>
+    </PropertyGroup>
+    <Exec Command="$(PowerShellExe) &quot;&amp; &apos;$(ScriptLocation)&apos;&quot; -NonInteractive -executionpolicy Unrestricted"/>
+  </Target>
+  <!--<Target Name="AfterBuild">-->
+  <!-- Insert tasks to run after build here -->
+  <!--</Target>-->
+</Project>
