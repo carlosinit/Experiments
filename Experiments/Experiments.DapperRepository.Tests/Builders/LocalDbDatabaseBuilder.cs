@@ -25,8 +25,6 @@ namespace Experiments.DapperRepository.Tests.Builders
             databaseFilePath = Path.Combine(path, databaseFileName);
             logFilePath = Path.Combine(path, logFileName);
 
-            //Assembly.GetExecutingAssembly().Location
-
             File.Copy(@"DatabaseTemplate\template.mdf", databaseFilePath);
             File.Copy(@"DatabaseTemplate\template_log.ldf", logFilePath);
 
