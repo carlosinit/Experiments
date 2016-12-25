@@ -1,29 +1,34 @@
 ﻿using Experiments.DapperRepository.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlServerCe;
+using System.IO;
 using System.Linq;
 
 namespace Experiments.DapperRepository.Tests.Builders
 {
-    public class DatabaseBuilder
+    public class SqlCompactDatabaseBuilder : IDisposable
     {
-        private const string databaseModuleName = "FakeDatabase";
+        private string databaseFile;
         private IDbConnection connection;
         private List<IDbCommand> queries = new List<IDbCommand>();
+        private string connectionString;
 
-        public DatabaseBuilder()
+        public SqlCompactDatabaseBuilder()
         {
-            connection = new SQLiteConnection("Data Source=:memory:;Version=3;New=True;");
+            databaseFile = Path.GetTempFileName();
+            connectionString = $"Data Source={databaseFile};Persist Security Info=False;";
+            connection = CreateConnection();
         }
 
-        public DatabaseBuilder WithSamplesTable(IEnumerable<Sample> samples = null)
+        public SqlCompactDatabaseBuilder WithSamplesTable(IEnumerable<Sample> samples = null)
         {
             var command = connection.CreateCommand();
             command.CommandText = "CREATE TABLE Samples (" +
-                "Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                "Name VARCHAR(30) NOT NULL," +
-                "Description VARCHAR(255) NOT NULL" +
+                "Id INTEGER PRIMARY KEY IDENTITY NOT NULL," +
+                "Name NVARCHAR(30) NOT NULL," +
+                "Description NVARCHAR(255) NOT NULL" +
                 ")";
             queries.Add(command);
 
@@ -48,14 +53,30 @@ namespace Experiments.DapperRepository.Tests.Builders
             return nameParameter;
         }
 
-        public IDbConnection Build()
+        public SqlCompactDatabaseBuilder Build()
         {
-            connection.Open();
-            foreach (var query in queries)
+            using (connection)
             {
-                query.ExecuteNonQuery();
+                connection.Open();
+                foreach (var query in queries)
+                {
+                    query.ExecuteNonQuery();
+                }
             }
-            return connection;
+            return this;
+        }
+
+        public IDbConnection CreateConnection()
+        {
+            return new SqlCeConnection(connectionString);
+        }
+
+        public void Dispose()
+        {
+            if (File.Exists(databaseFile))
+            {
+                File.Delete(databaseFile);
+            }
         }
     }
 }
