@@ -35,12 +35,12 @@ namespace DataFlow.Console
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            foreach (var bankAccount in GetBankAccounts())
-            {
-                bufferBlock.Post(bankAccount);
-            }
+            //foreach (var bankAccount in GetBankAccounts())
+            //{
+            //    bufferBlock.Post(bankAccount);
+            //}
 
-            //Parallel.ForEach(GetBankAccounts(), b => bufferBlock.Post(b));
+            Parallel.ForEach(GetBankAccounts(), b => bufferBlock.Post(b));
             stopWatch.Stop();
 
             System.Console.WriteLine("Waiting for closure");

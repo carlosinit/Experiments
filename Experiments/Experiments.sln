@@ -39,6 +39,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataFlow", "DataFlow", "{29
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFlow.Console", "DataFlow.Console\DataFlow.Console.csproj", "{54CDFF1A-C5F2-49E3-B4E4-0035A875090F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppDomains", "AppDomains", "{72E1DC66-B538-4126-B53F-97EE54B1E83C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDomainRunner", "AppDomainRunner\AppDomainRunner.csproj", "{50CA0E48-5267-49F4-B7DC-F565CC8F3D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +93,10 @@ Global
 		{54CDFF1A-C5F2-49E3-B4E4-0035A875090F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CDFF1A-C5F2-49E3-B4E4-0035A875090F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CDFF1A-C5F2-49E3-B4E4-0035A875090F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CA0E48-5267-49F4-B7DC-F565CC8F3D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CA0E48-5267-49F4-B7DC-F565CC8F3D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CA0E48-5267-49F4-B7DC-F565CC8F3D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CA0E48-5267-49F4-B7DC-F565CC8F3D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +113,7 @@ Global
 		{3C13E579-D356-4273-88F6-1F64E78CCE51} = {83358820-81C4-45AC-A54C-315D9019C013}
 		{B206B92C-BB60-4A47-82D4-392A372C822F} = {A12B0B89-41AD-41F6-9CCE-A82A16733FEF}
 		{54CDFF1A-C5F2-49E3-B4E4-0035A875090F} = {297B2610-5A04-4306-AFF7-F3331C09CD9A}
+		{50CA0E48-5267-49F4-B7DC-F565CC8F3D85} = {72E1DC66-B538-4126-B53F-97EE54B1E83C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2B86326-02D9-4351-BC3A-31E7205164AC}
